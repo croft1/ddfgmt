@@ -1,0 +1,4 @@
+.idea/*
+out/*
+raw/*
+!raw/README.md
