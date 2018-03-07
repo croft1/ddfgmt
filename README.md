@@ -1,4 +1,4 @@
-#DDF GMT 
+# DDF - GMT 
 
 **Distributed Data Framework Geojson to Metacard Transformer** 
 or simply
@@ -20,4 +20,5 @@ or simply
 
 
 
+=====================
 ###### Author - croft1 - https://github.com/croft1

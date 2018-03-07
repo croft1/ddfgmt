@@ -2,3 +2,5 @@
 out/*
 raw/*
 !raw/README.md
+transformed/*
+!transformed/README.md
