@@ -28,15 +28,15 @@ public class Start {
 
             ArrayList<Metacard> metacardArrayList = new Transformer().performForDispatch(files[i]);
 
+            int good = 0;
             for(int m = 0; m < metacardArrayList.size() ; m++) {
                 if(fm.dispatchMetacardToFile(metacardArrayList.get(m))){
-                    pr.print(metacardArrayList.get(m).getTitle() + " dispatch good.", ColourInterface.ANSI_GREEN);
+                    good++;
                 }else{
                     pr.addToPrintBuffer(metacardArrayList.get(m).getTitle() + " dispatch fail.");
                 }
-
-
             }
+                    pr.print(good + " successfully dispatched.", ColourInterface.ANSI_GREEN);
         }
     }
 

@@ -5,7 +5,8 @@ or simply
 **GMT**
 
 >The goal of GMT is to make it faster to produce valid metacard JSON or GEOJSON data to upload to an instance of DDF
-
+>Currently you cannot upload one large file with Intrigue to create many metacards, so we need to split it into many
+> in the format that is ready for DDF.
 
 
 ### How to run:
