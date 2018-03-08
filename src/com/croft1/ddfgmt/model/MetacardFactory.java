@@ -1,8 +1,7 @@
-package com.croft1.ddfgmt.processors;
+package com.croft1.ddfgmt.model;
 
-import com.croft1.ddfgmt.models.Metacard;
-import com.croft1.ddfgmt.outputs.ColourInterface;
-import com.croft1.ddfgmt.outputs.Printer;
+import com.croft1.ddfgmt.view.ColourInterface;
+import com.croft1.ddfgmt.view.Printer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -22,14 +21,15 @@ public class MetacardFactory {
 
     public ArrayList<Metacard> extractMetacards(JSONObject transformedFile) {
         ArrayList<Metacard> metacards = new ArrayList<>();
-        int totalFeatures = Integer.parseInt(transformedFile.get("totalFeatures").toString());
         JSONArray features = (JSONArray) transformedFile.get("features");
+        int totalFeatures = features.size();
+
         for(int i = 0; i < totalFeatures; i++){
             JSONObject feature = (JSONObject) features.get(i);
             feature.put("title", transformedFile.get("title").toString());
             Metacard validMetacard = new Metacard(feature);
-            pr.print(validMetacard.getTitle() + " made.", ColourInterface.ANSI_BLUE);
-            metacards.add(validMetacard);
+           metacards.add(validMetacard);
+            if(i == totalFeatures -1){ pr.print(totalFeatures + " metacards made.", ColourInterface.ANSI_BLUE);}
         }
 
         return metacards;

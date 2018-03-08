@@ -1,13 +1,10 @@
-package com.croft1.ddfgmt.processors;
+package com.croft1.ddfgmt.controller;
 
-import com.croft1.ddfgmt.models.Metacard;
-import com.croft1.ddfgmt.outputs.ColourInterface;
-import com.croft1.ddfgmt.outputs.Printer;
+import com.croft1.ddfgmt.model.Metacard;
+import com.croft1.ddfgmt.view.ColourInterface;
+import com.croft1.ddfgmt.view.Printer;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FilenameFilter;
-import java.io.IOException;
+import java.io.*;
 
 public class FileManager implements FileInterface {
     private static final Printer pr = new Printer();
@@ -38,14 +35,18 @@ public class FileManager implements FileInterface {
         //TODO from metacard object, build the file for saving
         File file = new File (transformedDirectory);
         file.mkdir();
-        String metacardFilePath = transformedDirectory + metacard.getTitle() + acceptedExtensions[1];
+        String metacardFilePath = transformedDirectory +
+                metacard.getTitle() +
+                acceptedExtensions[0]; //0-json;1-geojson; harcoded bc it doesnt matter
         file = new File (metacardFilePath);
 
-        try {
+        try(PrintStream out = new PrintStream(new FileOutputStream(metacardFilePath))) {
             file.createNewFile();
+            out.print(metacard.getJSONForDispatch());
 
-            FileWriter fw = new FileWriter(metacardFilePath);
-            fw.write(metacard.getJSONForDispatch());
+
+//            FileWriter fw = new FileWriter(metacardFilePath);
+//            fw.write(metacard.getJSONForDispatch());
 
             return true;
         }catch(IOException ioe){ioe.printStackTrace(); }

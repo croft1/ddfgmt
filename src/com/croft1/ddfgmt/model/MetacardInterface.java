@@ -1,4 +1,4 @@
-package com.croft1.ddfgmt.models;
+package com.croft1.ddfgmt.model;
 
 public interface MetacardInterface {
 

@@ -1,8 +1,9 @@
-package com.croft1.ddfgmt.processors;
+package com.croft1.ddfgmt.controller;
 
-import com.croft1.ddfgmt.models.Metacard;
-import com.croft1.ddfgmt.outputs.ColourInterface;
-import com.croft1.ddfgmt.outputs.Printer;
+import com.croft1.ddfgmt.model.Metacard;
+import com.croft1.ddfgmt.model.MetacardFactory;
+import com.croft1.ddfgmt.view.ColourInterface;
+import com.croft1.ddfgmt.view.Printer;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,11 +15,20 @@ public class Transformer {
     private static final Printer pr = new Printer();
     private static final JSONParser parser = new JSONParser();
 
+
+    /**
+    *
+     * * Transformer class is a processing unit to get a files data and transform it into
+     * a usable java format (like a JSONObject)
+    *
+    * @author croft1
+    *
+    * */
     public Transformer() {
 
     }
 
-//    Take file from and extract many metacards from it
+//    Take file from dir and extract many metacards from it
     public ArrayList<Metacard> performForDispatch(File file){
         if(fileIsJsonObject(file)) {
             JSONObject transformedFile = transformFileToJson(file);
@@ -35,6 +45,8 @@ public class Transformer {
         return null;
     }
 
+    //here we take a geo/json file and from its contents, parse it into a JSONObject
+    //for ease of manipulation
     private JSONObject transformFileToJson(File file){
         try{
             Object o = parser.parse(new FileReader(file));
@@ -72,7 +84,7 @@ public class Transformer {
 
         }catch(FileNotFoundException ioe){
             ioe.printStackTrace();
-            pr.print("fileJsonArrayOrObject fail");
+            pr.print("file doesnt exist fail");
         }catch(Exception e) {
             e.printStackTrace();
             pr.print("fileJsonArrayOrObject fail");

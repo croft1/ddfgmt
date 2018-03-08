@@ -1,4 +1,4 @@
-package com.croft1.ddfgmt.processors;
+package com.croft1.ddfgmt.controller;
 
 public interface FileInterface {
     String[] acceptedExtensions = {

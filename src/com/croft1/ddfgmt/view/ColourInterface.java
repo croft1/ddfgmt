@@ -1,4 +1,4 @@
-package com.croft1.ddfgmt.outputs;
+package com.croft1.ddfgmt.view;
 
 public interface ColourInterface {
 
