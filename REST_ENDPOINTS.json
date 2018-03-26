@@ -1,0 +1,9 @@
+{
+  "endpoints":
+    [
+      ["https://data.melbourne.vic.gov.au/resource/qnjw-wgaj.geojson"],
+      ["https://data.melbourne.vic.gov.au/.json"],
+      ["savvsav"]
+    ]
+
+}
