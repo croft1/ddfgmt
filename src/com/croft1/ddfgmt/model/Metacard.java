@@ -9,11 +9,11 @@ import java.util.Iterator;
 public class Metacard implements MetacardInterface {
 
     String id_value = "";
-    String type_value = "";
+    String type_value = "Feature";
     String geometry_name_value = "";
     JSONObject properties = new JSONObject();
     JSONObject geometry = new JSONObject();
-    JSONObject base_info = new JSONObject();
+    JSONObject extra_info = new JSONObject();
 
     public static int count = 0;
 
@@ -37,7 +37,7 @@ public class Metacard implements MetacardInterface {
             if(key.equals(geometry_name) || key.equals(properties_name)){
                 //only want extraneous data
             }else {
-                base_info.put(key, jsonObject.get(key));
+                extra_info.put(key, jsonObject.get(key));
             }
         }
         int i;
@@ -50,10 +50,10 @@ public class Metacard implements MetacardInterface {
 
 
     public String getJSONForDispatch(){
-        JSONObject metacard = base_info;
+        JSONObject metacard = new JSONObject();
         metacard.put(properties_name, properties);
-        metacard.put(geometry_name, geometry);
         metacard.put(type_name, type_value);
+        metacard.put(geometry_name, geometry);
 
         return metacard.toJSONString();
     }
