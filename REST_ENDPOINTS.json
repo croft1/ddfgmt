@@ -1,9 +1,18 @@
 {
   "endpoints":
     [
-      ["https://data.melbourne.vic.gov.au/resource/qnjw-wgaj.geojson"],
-      ["https://data.melbourne.vic.gov.au/.json"],
-      ["savvsav"]
+      {
+        "name":"Melbs Bike Share Stations",
+        "link": "https://data.melbourne.vic.gov.au/resource/qnjw-wgaj.geojson"
+      },
+      {
+        "name":"Address but not json",
+        "link": "https://data.melbourne.vic.gov.au/"
+      },
+      {
+        "name":"Not even an address",
+        "link": "this should fail.com"
+      }
     ]
 
 }

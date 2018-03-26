@@ -20,6 +20,36 @@ or simply
 
 
 
+###### Rest Endpoints
+
+
+```REST_ENDPOINTS.json```
+
+```{
+     "endpoints":
+       [
+         {
+           "name":"Melbs Bike Share Stations",
+           "link": "https://data.melbourne.vic.gov.au/resource/qnjw-wgaj.geojson"
+         },
+         {
+           "name":"Address but not json",
+           "link": "https://data.melbourne.vic.gov.au/"
+         },
+         {
+           "name":"Not even an address",
+           "link": "this should fail.com"
+         }
+       ]
+   }
+```
+
+- Follow the structure above and add a value to the endpoints array in ```REST_ENDPOINTS.json```
+- Run the script
+- Valid geojson/json URL's will be looked at and processed
+- It'll save the data files in ```/raw```
+- Then processing will commence
+
 
 =====================
 ###### Author - croft1 - https://github.com/croft1

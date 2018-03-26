@@ -6,5 +6,9 @@ public interface FileInterface {
             ".geojson"
     };
     String rawDirectory = "raw/";
+    String rootDirectory = "raw/../";
     String transformedDirectory = "transformed/";
+
+    String restEndpointsFileName = "REST_ENDPOINTS";
+
 }
