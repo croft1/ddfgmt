@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Transformer {
     private static final Printer pr = new Printer();
     private static final JSONParser parser = new JSONParser();
+    private static final FileValidator fileValidator = new FileValidator();
 
 
     /**
@@ -29,8 +30,8 @@ public class Transformer {
     }
 
 //    Take file from dir and extract many metacards from it
-    public ArrayList<Metacard> performForDispatch(File file){
-        if(fileIsJsonObject(file)) {
+    public ArrayList<Metacard> performOnFileForDispatch(File file){
+        if(fileValidator.fileIsJsonObject(file)) {
             JSONObject transformedFile = transformFileToJson(file);
             transformedFile.put("title", file.getName().substring(0,
                     file.getName().lastIndexOf('.')));
@@ -47,7 +48,7 @@ public class Transformer {
 
     //here we take a geo/json file and from its contents, parse it into a JSONObject
     //for ease of manipulation
-    private JSONObject transformFileToJson(File file){
+    public JSONObject transformFileToJson(File file){
         try{
             Object o = parser.parse(new FileReader(file));
             JSONObject jsonObject = (JSONObject) o;
@@ -68,30 +69,7 @@ public class Transformer {
     }
 
 
-    //The goal of this method is to determine is the file is
-    // a whole JSONArray or a JSONObject.
-    //Done by checking if the first character is a '[' or a '{'
-    private boolean fileIsJsonObject(File file){
-        try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(file),
-                            "UTF-8"));
-            String line = in.readLine();
-            if(line!=null && line.length() >5)
-                line = line.substring(0, 1);
-            if(line.equals("[")){return false;} else {return true;}
 
-        }catch(FileNotFoundException ioe){
-            ioe.printStackTrace();
-            pr.print("file doesnt exist fail");
-        }catch(Exception e) {
-            e.printStackTrace();
-            pr.print("fileJsonArrayOrObject fail");
-        }
-
-        return false;
-    }
 
 
 }
