@@ -64,6 +64,10 @@ In the file ```/REST_ENDPOINTS.json``` you define REST API endpoints pointing to
 - It'll save the data files in ```/raw```
 - Then processing will commence
 
+###### Notes
+
+- ```/raw``` and ```REST_ENDPOINTS.json``` must be present. Deleting will fail program
+
 
 =====================
 ###### Author - croft1 - https://github.com/croft1

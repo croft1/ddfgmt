@@ -45,7 +45,8 @@ public class FileManager implements FileInterface {
             }
         }catch(Exception e){
             e.printStackTrace();
-            pr.print("No  " + restEndpointsFileName + " file, please add one or remove a duplicate" +
+            pr.print("No " + restEndpointsFileName + " file in " + System.getProperty("user.dir") +", please add one or remove a duplicate" +
+
                     " and consult the README.md for further info", ColourInterface.ANSI_RED);
         }
         return matchingFiles[0]; //should only be one
