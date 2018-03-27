@@ -2,12 +2,20 @@
   "endpoints":
     [
       {
+        "name":"Melbs On-Street Parking Bay Sensors",
+        "link": "https://data.melbourne.vic.gov.au/resource/dtpv-d4pf.geojson?$limit=123134524"
+      },
+      {
+        "name":"Melbs Parking Bay Information",
+        "link": "https://data.melbourne.vic.gov.au/resource/rzb8-bz3y.geojson?$limit=123134524"
+      },
+      {
+        "name":"Melbs Parking Bays",
+        "link": "https://data.melbourne.vic.gov.au/resource/wuf8-susg.geojson?$limit=123134524"
+      },
+      {
         "name":"Melbs Bike Share Stations",
         "link": "https://data.melbourne.vic.gov.au/resource/qnjw-wgaj.geojson"
-      },
-      {
-      },
-      {
       }
     ]
 

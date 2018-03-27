@@ -43,7 +43,8 @@ public class Start {
                     //writes to file
                     fm.dispatchRestDataToFile(restEndpoints.getKey(), j); //get key name for file
                 }
-            }catch(IOException io){io.printStackTrace();};
+            }catch(IOException io){io.printStackTrace();}
+            catch(ClassCastException  cce){pr.print("Data points to .json data not .geojson, try again");}
         }
     }
 

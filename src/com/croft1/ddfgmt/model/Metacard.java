@@ -19,6 +19,15 @@ public class Metacard implements MetacardInterface {
 
 
     public Metacard(JSONObject jsonObject){
+        ingestJsonObject(jsonObject);
+    }
+
+    public Metacard(JSONArray jsonArray){
+        //TODO add JSONARRAY parsing Support
+        //m- jsonarray isnt geojson so this isnt necessary
+    }
+
+    private void ingestJsonObject(JSONObject jsonObject){
         properties = (JSONObject) jsonObject.get("properties");
         geometry = (JSONObject) jsonObject.get("geometry");
 
@@ -40,12 +49,6 @@ public class Metacard implements MetacardInterface {
                 extra_info.put(key, jsonObject.get(key));
             }
         }
-        int i;
-
-    }
-
-    public Metacard(JSONArray jsonArray){
-        //TODO add JSONARRAY parsing Support
     }
 
 

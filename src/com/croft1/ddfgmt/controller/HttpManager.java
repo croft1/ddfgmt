@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 public class HttpManager {
     private static final Printer pr = new Printer();
 
-    public JSONObject readRestJsonFromUrl(String url) throws IOException {
+    public JSONObject readRestJsonFromUrl(String url) throws IOException, ClassCastException {
         pr.print("Preparing to read: " + url);
         InputStream is = new URL(url).openStream();
         try {
@@ -32,6 +32,7 @@ public class HttpManager {
             pr.print(url + " does not point to valid json, parse failure -- skipped", ColourInterface.ANSI_RED);
         } catch (Exception e){
             pr.print("General error occured for this url -- skipped", ColourInterface.ANSI_RED);
+            e.printStackTrace();
         }
         finally{is.close();}
         return null;
@@ -44,5 +45,11 @@ public class HttpManager {
             sb.append((char) cp);
         }
         return sb.toString();
+    }
+
+    private boolean isJsonObject(String json){
+        if(json!=null && json.length() > 3)
+            json = json.substring(0, 1);
+        if(json.equals("[")){return false;} else {return true;}
     }
 }

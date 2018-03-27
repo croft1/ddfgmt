@@ -32,7 +32,7 @@ or simply
 ###### Rest Endpoints
 
 
-In the file ```/REST_ENDPOINTS.json``` you define REST API endpoints to process
+In the file ```/REST_ENDPOINTS.json``` you define REST API endpoints pointing to **.geojson** data to process
 
 ```{
      "endpoints":
