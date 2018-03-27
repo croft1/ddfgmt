@@ -34,7 +34,16 @@ public class Start {
 
     private void fetchDataAtEndpoints() {
         ArrayList<String> restEndpoints = fm.getRestEndpointLinks();
-        
+        ArrayList<JSONObject> httpData = new ArrayList<>();
+        //get all valid json data from http request
+        for (int i = 0; i < restEndpoints.size(); i++) {
+            try{
+                JSONObject j = httpm.readRestJsonFromUrl(restEndpoints.get(i));
+                if(j != null) {
+                    httpData.add(j);
+                }
+            }catch(IOException io){io.printStackTrace();};
+        }
 
     }
 
