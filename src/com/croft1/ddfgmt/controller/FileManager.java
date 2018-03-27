@@ -7,16 +7,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileManager implements FileInterface {
     private static final Printer pr = new Printer();
     public FileManager() {
 
     }
-    public ArrayList<String> getRestEndpointLinks(){
+    public Map<String, String> getRestEndpointLinks(){
         File restEndpointsFile = getRestEndpointsFile();
-        ArrayList<String> endpoints = new ArrayList<>();
+        Map<String, String> endpoints = new HashMap<String, String>();
         JSONObject json = new Transformer().transformFileToJson(restEndpointsFile);
         JSONArray jsonEndpoints = (JSONArray) json.get("endpoints");
         int totalEndpoints = jsonEndpoints.size();
@@ -25,7 +26,7 @@ public class FileManager implements FileInterface {
         for(int i = 0; i < totalEndpoints; i++){
             JSONObject endpoint = (JSONObject) jsonEndpoints.get(i);
             pr.print("Link defined: " + endpoint.get("link").toString());
-            endpoints.add(endpoint.get("link").toString());
+            endpoints.put(endpoint.get("name").toString(), endpoint.get("link").toString());
         }
         return endpoints;
     }
@@ -50,11 +51,11 @@ public class FileManager implements FileInterface {
         return matchingFiles[0]; //should only be one
     }
 
-    public boolean dispatchRestDataToFile(JSONObject restJson){
+    public boolean dispatchRestDataToFile(String name, JSONObject restJson){
         File file = new File (rawDirectory);
         file.mkdir();
         String restDataFilePath = rawDirectory +
-                restJson.get("name") +
+                name +
                 acceptedExtensions[0]; //0-json;1-geojson; harcoded bc it doesnt matter
         file = new File (restDataFilePath);
 

@@ -1,16 +1,17 @@
 package com.croft1.ddfgmt;
 
+import com.croft1.ddfgmt.controller.FileManager;
 import com.croft1.ddfgmt.controller.HttpManager;
+import com.croft1.ddfgmt.controller.Transformer;
 import com.croft1.ddfgmt.model.Metacard;
 import com.croft1.ddfgmt.view.ColourInterface;
 import com.croft1.ddfgmt.view.Printer;
-import com.croft1.ddfgmt.controller.FileManager;
-import com.croft1.ddfgmt.controller.Transformer;
 import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Start {
     FileManager fm = new FileManager();
@@ -33,18 +34,17 @@ public class Start {
     }
 
     private void fetchDataAtEndpoints() {
-        ArrayList<String> restEndpoints = fm.getRestEndpointLinks();
-        ArrayList<JSONObject> httpData = new ArrayList<>();
-        //get all valid json data from http request
-        for (int i = 0; i < restEndpoints.size(); i++) {
+        //request reads urls
+        for (Map.Entry<String, String> restEndpoints : fm.getRestEndpointLinks().entrySet()) {
             try{
-                JSONObject j = httpm.readRestJsonFromUrl(restEndpoints.get(i));
+             //get all valid json data from http request
+                JSONObject j = httpm.readRestJsonFromUrl(restEndpoints.getValue());
                 if(j != null) {
-                    httpData.add(j);
+                    //writes to file
+                    fm.dispatchRestDataToFile(restEndpoints.getKey(), j); //get key name for file
                 }
             }catch(IOException io){io.printStackTrace();};
         }
-
     }
 
     private void processFile(File[] files){
